@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CargoViewDlg" widgetVar="CargoViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewCargoTitle}">
+            <h:form id="CargoViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{cargoController.selected != null}">
+                        <h:outputText value="#{bundle.ViewCargoLabel_cargCarg}"/>
+                        <h:outputText value="#{cargoController.selected.cargCarg}" title="#{bundle.ViewCargoTitle_cargCarg}"/>
+                        <h:outputText value="#{bundle.ViewCargoLabel_cargNombre}"/>
+                        <h:outputText value="#{cargoController.selected.cargNombre}" title="#{bundle.ViewCargoTitle_cargNombre}"/>
+                        <h:outputText value="#{bundle.ViewCargoLabel_cargDescripcion}"/>
+                        <h:outputText value="#{cargoController.selected.cargDescripcion}" title="#{bundle.ViewCargoTitle_cargDescripcion}"/>
+                        <h:outputText value="#{bundle.ViewCargoLabel_cargSalario}"/>
+                        <h:outputText value="#{cargoController.selected.cargSalario}" title="#{bundle.ViewCargoTitle_cargSalario}"/>
+                        <h:outputText value="#{bundle.ViewCargoLabel_cargEstado}"/>
+                        <h:outputText value="#{cargoController.selected.cargEstado}" title="#{bundle.ViewCargoTitle_cargEstado}"/>
+                        <h:outputText value="#{bundle.ViewCargoLabel_cargPersJefe}"/>
+                        <h:outputText value="#{cargoController.selected.cargPersJefe}" title="#{bundle.ViewCargoTitle_cargPersJefe}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="CargoViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

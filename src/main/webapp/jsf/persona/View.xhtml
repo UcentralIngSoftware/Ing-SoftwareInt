@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PersonaViewDlg" widgetVar="PersonaViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewPersonaTitle}">
+            <h:form id="PersonaViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{personaController.selected != null}">
+                        <h:outputText value="#{bundle.ViewPersonaLabel_persPers}"/>
+                        <h:outputText value="#{personaController.selected.persPers}" title="#{bundle.ViewPersonaTitle_persPers}"/>
+                        <h:outputText value="#{bundle.ViewPersonaLabel_persNombre}"/>
+                        <h:outputText value="#{personaController.selected.persNombre}" title="#{bundle.ViewPersonaTitle_persNombre}"/>
+                        <h:outputText value="#{bundle.ViewPersonaLabel_persApellido}"/>
+                        <h:outputText value="#{personaController.selected.persApellido}" title="#{bundle.ViewPersonaTitle_persApellido}"/>
+                        <h:outputText value="#{bundle.ViewPersonaLabel_persTelefono}"/>
+                        <h:outputText value="#{personaController.selected.persTelefono}" title="#{bundle.ViewPersonaTitle_persTelefono}"/>
+                        <h:outputText value="#{bundle.ViewPersonaLabel_persCelular}"/>
+                        <h:outputText value="#{personaController.selected.persCelular}" title="#{bundle.ViewPersonaTitle_persCelular}"/>
+                        <h:outputText value="#{bundle.ViewPersonaLabel_persDireccion}"/>
+                        <h:outputText value="#{personaController.selected.persDireccion}" title="#{bundle.ViewPersonaTitle_persDireccion}"/>
+                        <h:outputText value="#{bundle.ViewPersonaLabel_persEstado}"/>
+                        <h:outputText value="#{personaController.selected.persEstado}" title="#{bundle.ViewPersonaTitle_persEstado}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="PersonaViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

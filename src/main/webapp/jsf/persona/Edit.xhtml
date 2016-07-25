@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PersonaEditDlg" widgetVar="PersonaEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditPersonaTitle}">
+            <h:form id="PersonaEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{personaController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditPersonaLabel_persPers}" for="persPers" />
+                        <p:inputText id="persPers" value="#{personaController.selected.persPers}" title="#{bundle.EditPersonaTitle_persPers}" required="true" requiredMessage="#{bundle.EditPersonaRequiredMessage_persPers}"/>
+                        <p:outputLabel value="#{bundle.EditPersonaLabel_persNombre}" for="persNombre" />
+                        <p:inputText id="persNombre" value="#{personaController.selected.persNombre}" title="#{bundle.EditPersonaTitle_persNombre}" />
+                        <p:outputLabel value="#{bundle.EditPersonaLabel_persApellido}" for="persApellido" />
+                        <p:inputText id="persApellido" value="#{personaController.selected.persApellido}" title="#{bundle.EditPersonaTitle_persApellido}" />
+                        <p:outputLabel value="#{bundle.EditPersonaLabel_persTelefono}" for="persTelefono" />
+                        <p:inputText id="persTelefono" value="#{personaController.selected.persTelefono}" title="#{bundle.EditPersonaTitle_persTelefono}" />
+                        <p:outputLabel value="#{bundle.EditPersonaLabel_persCelular}" for="persCelular" />
+                        <p:inputText id="persCelular" value="#{personaController.selected.persCelular}" title="#{bundle.EditPersonaTitle_persCelular}" />
+                        <p:outputLabel value="#{bundle.EditPersonaLabel_persDireccion}" for="persDireccion" />
+                        <p:inputText id="persDireccion" value="#{personaController.selected.persDireccion}" title="#{bundle.EditPersonaTitle_persDireccion}" />
+                        <p:outputLabel value="#{bundle.EditPersonaLabel_persEstado}" for="persEstado" />
+                        <p:inputText id="persEstado" value="#{personaController.selected.persEstado}" title="#{bundle.EditPersonaTitle_persEstado}" required="true" requiredMessage="#{bundle.EditPersonaRequiredMessage_persEstado}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{personaController.update}" value="#{bundle.Save}" update="display,:PersonaListForm:datalist,:growl" oncomplete="handleSubmit(args, 'PersonaEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="PersonaEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

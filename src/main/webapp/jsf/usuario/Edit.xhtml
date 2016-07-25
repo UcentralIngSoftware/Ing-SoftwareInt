@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="UsuarioEditDlg" widgetVar="UsuarioEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditUsuarioTitle}">
+            <h:form id="UsuarioEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{usuarioController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditUsuarioLabel_usuaUsua}" for="usuaUsua" />
+                        <p:inputText id="usuaUsua" value="#{usuarioController.selected.usuaUsua}" title="#{bundle.EditUsuarioTitle_usuaUsua}" required="true" requiredMessage="#{bundle.EditUsuarioRequiredMessage_usuaUsua}"/>
+                        <p:outputLabel value="#{bundle.EditUsuarioLabel_usuaUser}" for="usuaUser" />
+                        <p:inputText id="usuaUser" value="#{usuarioController.selected.usuaUser}" title="#{bundle.EditUsuarioTitle_usuaUser}" />
+                        <p:outputLabel value="#{bundle.EditUsuarioLabel_usuaPass}" for="usuaPass" />
+                        <p:inputText id="usuaPass" value="#{usuarioController.selected.usuaPass}" title="#{bundle.EditUsuarioTitle_usuaPass}" />
+                        <p:outputLabel value="#{bundle.EditUsuarioLabel_usuaPerfil}" for="usuaPerfil" />
+                        <p:inputText id="usuaPerfil" value="#{usuarioController.selected.usuaPerfil}" title="#{bundle.EditUsuarioTitle_usuaPerfil}" />
+                        <p:outputLabel value="#{bundle.EditUsuarioLabel_usuaEstado}" for="usuaEstado" />
+                        <p:inputText id="usuaEstado" value="#{usuarioController.selected.usuaEstado}" title="#{bundle.EditUsuarioTitle_usuaEstado}" required="true" requiredMessage="#{bundle.EditUsuarioRequiredMessage_usuaEstado}"/>
+                        <p:outputLabel value="#{bundle.EditUsuarioLabel_usuaPers}" for="usuaPers" />
+                        <p:selectOneMenu id="usuaPers" value="#{usuarioController.selected.usuaPers}" required="true" requiredMessage="#{bundle.EditUsuarioRequiredMessage_usuaPers}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{personaController.itemsAvailableSelectOne}"
+                                           var="usuaPersItem"
+                                           itemValue="#{usuaPersItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{usuarioController.update}" value="#{bundle.Save}" update="display,:UsuarioListForm:datalist,:growl" oncomplete="handleSubmit(args, 'UsuarioEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="UsuarioEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CargoEditDlg" widgetVar="CargoEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditCargoTitle}">
+            <h:form id="CargoEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{cargoController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditCargoLabel_cargCarg}" for="cargCarg" />
+                        <p:inputText id="cargCarg" value="#{cargoController.selected.cargCarg}" title="#{bundle.EditCargoTitle_cargCarg}" required="true" requiredMessage="#{bundle.EditCargoRequiredMessage_cargCarg}"/>
+                        <p:outputLabel value="#{bundle.EditCargoLabel_cargNombre}" for="cargNombre" />
+                        <p:inputText id="cargNombre" value="#{cargoController.selected.cargNombre}" title="#{bundle.EditCargoTitle_cargNombre}" />
+                        <p:outputLabel value="#{bundle.EditCargoLabel_cargDescripcion}" for="cargDescripcion" />
+                        <p:inputText id="cargDescripcion" value="#{cargoController.selected.cargDescripcion}" title="#{bundle.EditCargoTitle_cargDescripcion}" />
+                        <p:outputLabel value="#{bundle.EditCargoLabel_cargSalario}" for="cargSalario" />
+                        <p:inputText id="cargSalario" value="#{cargoController.selected.cargSalario}" title="#{bundle.EditCargoTitle_cargSalario}" />
+                        <p:outputLabel value="#{bundle.EditCargoLabel_cargEstado}" for="cargEstado" />
+                        <p:inputText id="cargEstado" value="#{cargoController.selected.cargEstado}" title="#{bundle.EditCargoTitle_cargEstado}" />
+                        <p:outputLabel value="#{bundle.EditCargoLabel_cargPersJefe}" for="cargPersJefe" />
+                        <p:selectOneMenu id="cargPersJefe" value="#{cargoController.selected.cargPersJefe}" required="true" requiredMessage="#{bundle.EditCargoRequiredMessage_cargPersJefe}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{personaController.itemsAvailableSelectOne}"
+                                           var="cargPersJefeItem"
+                                           itemValue="#{cargPersJefeItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{cargoController.update}" value="#{bundle.Save}" update="display,:CargoListForm:datalist,:growl" oncomplete="handleSubmit(args, 'CargoEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="CargoEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
